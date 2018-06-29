@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  proxy:
+    image: nginx:stable
+    links:
+      - app
+    ports:
+      - "8089:8080"
+    volumes:
+      - ./env/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+      - ./public:/usr/share/nginx/www/public
+    environment:
+      - NGINX_HOST=test.local
+      - NGINX_PORT=8080
+
+  app:
+    build: ./env
+    expose:
+      - "9000" # PHP-FPM
+    environment:
+      - XDEBUG_CONFIG="remote_host=172.16.67.25"
+      - PHP_IDE_CONFIG="serverName=test.local"
+    volumes:
+      - .:/usr/share/nginx/www
+    working_dir: /usr/share/nginx/www
