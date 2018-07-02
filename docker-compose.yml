@@ -19,8 +19,8 @@ services:
     expose:
       - "9000" # PHP-FPM
     environment:
-      - XDEBUG_CONFIG="remote_host=172.16.67.25"
-      - PHP_IDE_CONFIG="serverName=test.local"
+      - XDEBUG_CONFIG=remote_host=172.16.67.25
+      - PHP_IDE_CONFIG=serverName=mytest.local
     volumes:
       - .:/usr/share/nginx/www
     working_dir: /usr/share/nginx/www
