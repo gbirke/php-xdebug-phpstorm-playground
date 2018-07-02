@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  proxy:
+      environment:
+        - NGINX_HOST=test.local
+        - NGINX_PORT=8080
+        - PHP_FPM_HOST=app_debug
+      links:
+        - app_debug
+
+  app_debug:
+    build:
+      context: ./env
+      target: app_debug
+    environment:
+      - XDEBUG_CONFIG=remote_host=${LOCAL_IP} # This won't work from PHPStorm until https://youtrack.jetbrains.com/issue/WI-41043 is fixed
+      - PHP_IDE_CONFIG=serverName=test.local
+    expose:
+      - "9000" # PHP-FPM
+    volumes:
+      - .:/usr/share/nginx/www
+    working_dir: /usr/share/nginx/www
