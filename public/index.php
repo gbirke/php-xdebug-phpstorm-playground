@@ -1,11 +1,17 @@
 <?php
 
-include __DIR__ . '/../src/header.php';
+//phpinfo();
+
+require_once __DIR__ . '/../src/Header.php';
+require_once __DIR__ . '/../src/Footer.php';
+
+$header = new Header();
+echo $header->getHeader();
 
 // multiple statements for testing single step debugging
 $greet = 'Hello';
-$greet .= ' Wosrld!';
+$greet .= ' World!';
 
 printf( "      %s\n", $greet );
 
-include __DIR__ . '/../src/footer.php';
+echo ( new Footer() )->getFooter();
