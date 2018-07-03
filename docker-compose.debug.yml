@@ -14,7 +14,7 @@ services:
       context: ./env
       target: app_debug
     environment:
-      - XDEBUG_CONFIG=remote_host=${LOCAL_IP} # This won't work from PHPStorm until https://youtrack.jetbrains.com/issue/WI-41043 is fixed
+      - XDEBUG_CONFIG=remote_host=${LOCAL_IP} # This won't work for PHPStorm CLI runs until https://youtrack.jetbrains.com/issue/WI-41043 is fixed
       - PHP_IDE_CONFIG=serverName=test.local
     expose:
       - "9000" # PHP-FPM
