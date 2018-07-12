@@ -33,7 +33,7 @@ Make sure that the volume mount for the project directory `docker-compose.yml` (
 Compare the outputs of the following commands:
 
     docker-compose run app php -v
-    docker-compose -f docker.compose.yml -f docker-compose.debug.yml run app_debug php -v
+    docker-compose -f docker-compose.yml -f docker-compose.debug.yml run app_debug php -v
 
 The second command should show the PHP Version with XDebug.
 
@@ -47,9 +47,13 @@ To enable XDebug to connect to the IDE on your host machine, you need to set the
 
     export LOCAL_IP=192.168.0.7
 
+A relatively reliable way to set the correct IP address on Linux systems is to run `hostname -I` and assigning the first result to the variable:
+
+    LOCAL_IP="$(hostname -I | awk '{print $1}')" && echo ${LOCAL_IP}
+
 To start the environment with Xdebug, run
 
-    docker-compose -f docker.compose.yml -f docker-compose.debug.yml up
+    docker-compose -f docker-compose.yml -f docker-compose.debug.yml up
 
 **Note:** Whenever you switch between environments, remember to stop the web server container before starting the new environment.
 
