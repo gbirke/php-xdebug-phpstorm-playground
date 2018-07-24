@@ -51,6 +51,10 @@ A relatively reliable way to set the correct IP address on Linux systems is to r
 
     LOCAL_IP="$(hostname -I | awk '{print $1}')" && echo ${LOCAL_IP}
 
+An alternative to `export` is to create a file called `.env` that contains the line
+
+    LOCAL_IP=192.168.0.7
+
 To start the environment with Xdebug, run
 
     docker-compose -f docker-compose.yml -f docker-compose.debug.yml up
